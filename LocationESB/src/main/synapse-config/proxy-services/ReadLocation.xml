@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="ReadLocation" startOnLoad="true" trace="disable"
+  transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+  <target>
+    <inSequence>
+      <property expression="uri.var.locationname" name="location"
+        scope="axis2" type="STRING"/>
+      <property name="POST_TO_URI" scope="axis2" type="STRING" value="true"/>
+      <property name="HTTP_METHOD" scope="axis2" type="STRING" value="GET"/>
+      <header name="Accept" scope="transport" value="application/xml"/>
+      <send/>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence/>
+  </target>
+</proxy>

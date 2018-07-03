@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="CreateLocation" startOnLoad="true" trace="disable"
+  transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+  <target>
+    <inSequence>
+      <property expression="$url:locationname" name="locationname"
+        scope="default" type="STRING" xmlns:ns="http://org.apache.synapse/xsd"/>
+      <payloadFactory media-type="xml">
+        <format>
+          <LocationData>
+            <location>$1</location>
+            <timezone>$2</timezone>
+          </LocationData>
+        </format>
+        <args>
+          <arg evaluator="xml" expression="//LocationData:location"/>
+          <arg evaluator="xml" expression="//LocationData:timezone"/>
+        </args>
+      </payloadFactory>
+      <property name="messageType" scope="axis2" type="STRING" value="text/xml"/>
+      <property name="POST_TO_URI" scope="axis2" type="STRING" value="true"/>
+      <property name="HTTP_METHOD" scope="axis2" type="STRING" value="POST"/>
+      <header name="Accept" scope="transport" value="application/xml"/>
+      <send>
+        <endpoint>
+          <address format="pox" trace="disable" uri="http://localhost:8080/cxfexample/cxf/rest/location/"/>
+        </endpoint>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence/>
+  </target>
+</proxy>

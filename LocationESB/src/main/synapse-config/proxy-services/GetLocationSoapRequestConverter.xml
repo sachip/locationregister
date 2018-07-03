@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="GetLocationSoapRequestConverter" startOnLoad="true"
+  trace="disable" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+  <target>
+    <inSequence>
+      <property expression="$url:locationname" name="locationname"
+        scope="default" type="STRING" xmlns:ns="http://org.apache.synapse/xsd"/>
+      <payloadFactory media-type="xml">
+        <format>
+          <m:readLocation xmlns:m="http://webservice.cxfexample.exampledriven.org/">
+            <arg0 xmlns="">$1</arg0>
+          </m:readLocation>
+        </format>
+        <args>
+          <arg evaluator="xml" expression="get-property('locationname')" xmlns:ns="http://org.apache.synapse/xsd"/>
+        </args>
+      </payloadFactory>
+      <property name="messageType" scope="axis2" type="STRING" value="text/xml"/>
+      <header name="Accept" scope="transport" value="urn:readLocation"/>
+      <send>
+        <endpoint>
+          <address format="soap11" trace="disable" uri="http://localhost:8080/cxfexample/cxf/soap/location/"/>
+        </endpoint>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence/>
+  </target>
+</proxy>

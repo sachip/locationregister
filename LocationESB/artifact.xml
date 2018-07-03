@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="GetLocationWithSoapClient" groupId="com.test.esb.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/GetLocationWithSoapClient.xml</file>
+    </artifact>
+    <artifact name="ReadLocation" groupId="com.test.esb.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/ReadLocation.xml</file>
+    </artifact>
+    <artifact name="CreateLocation" groupId="com.test.esb.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/CreateLocation.xml</file>
+    </artifact>
+    <artifact name="GetLocationSoapRequestConverter" groupId="com.test.esb.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/GetLocationSoapRequestConverter.xml</file>
+    </artifact>
+</artifacts>
